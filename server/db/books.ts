@@ -9,3 +9,11 @@ export function getAllBooks( db = connection): Promise<Book[]> {
 export function addBook(newBook: Book, db = connection): Promise<Book[]> {
   return db('books').insert({...newBook})
 }
+
+export function updateBook(bookId:number, updatedBook: Book, db = connection): Promise<Book> {
+  return db('books')
+    .update(updatedBook)
+    .where('id', bookId )
+    .returning(['id', 'title', 'author'])
+    .then((result) => result[0])
+}
