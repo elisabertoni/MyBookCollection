@@ -17,3 +17,7 @@ export function updateBook(bookId:number, updatedBook: Book, db = connection): P
     .returning(['id', 'title', 'author'])
     .then((result) => result[0])
 }
+
+export function deleteBook(bookId:number, db = connection) {
+  return db('books').where('id', bookId).del()
+}
