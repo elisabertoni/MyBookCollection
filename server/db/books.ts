@@ -6,3 +6,6 @@ export function getAllBooks( db = connection): Promise<Book[]> {
   return db('books').select()
 }
 
+export function addBook(newBook: Book, db = connection): Promise<Book[]> {
+  return db('books').insert({...newBook})
+}
