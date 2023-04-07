@@ -22,14 +22,10 @@ router.post('/', async (req, res) => {
 
   try {
     const newBook = req.body as BookCreate
-    
+
     if (!newBook) {
       res.status(400).json({error: 'New book was invalid'})
     }
-
-    // const [newBookId] = await addBook(newBook)
-
-    // res.json({ id: newBookId, ...newBook })
 
     const books = await addBook(newBook)
 
@@ -54,8 +50,8 @@ router.patch('/:id', async (req, res) => {
       })
     }
 
-    const updatedBook= await updateBook(Number(bookId), req.body)
-    res.json(updatedBook)
+    const books = await updateBook(Number(bookId), req.body)
+    res.json(books)
 
   } catch (error) {
     console.log(error)
@@ -76,8 +72,8 @@ router.delete('/:id', async (req, res) => {
       })
     }
 
-    await deleteBook(Number(bookId))
-    res.status(200).json('OK')
+    const books = await deleteBook(Number(bookId))
+    res.json(books)
 
   } catch (error) {
     console.log(error)
