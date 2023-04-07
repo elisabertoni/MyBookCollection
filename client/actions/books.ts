@@ -3,7 +3,7 @@ import { getBooksApi, addBookApi, updateBookApi, deleteBookApi } from "../apis/b
 import { Book, BookCreate } from "../../models/book";
 
 export const SET_BOOK_PENDING = 'SET_BOOKS_PENDING'
-export const SET_BOOK_SUCCESS = 'SET_BOOKS_PENDING'
+export const SET_BOOK_SUCCESS = 'SET_BOOKS_SUCCESS'
 export const SET_BOOK_ADD = 'SET_BOOK_ADD'
 export const SET_BOOK_UPDATE = 'SET_BOOK_UPDATE'
 export const SET_BOOK_DELETE = 'SET_BOOK_DELETE'
@@ -32,10 +32,10 @@ export function setBooksSuccess(books: Book[]): BookAction {
   }
 }
 
-export function setBookAdd(book: Book[]): BookAction {
+export function setBookAdd(books: Book[]): BookAction {
   return {
     type: SET_BOOK_ADD,
-    payload: book
+    payload: books
   }
 }
 
