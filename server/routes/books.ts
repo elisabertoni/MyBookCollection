@@ -1,4 +1,5 @@
 import express from 'express'
+import { BookCreate } from '../../models/book'
 import { addBook, deleteBook, getAllBooks, updateBook } from '../db/books'
 const router = express.Router()
 
@@ -18,12 +19,21 @@ router.get('/', async (req, res) => {
 
 // POST /api/v1/books
 router.post('/', async (req, res) => {
+
   try {
-    const newBook = req.body
+    const newBook = req.body as BookCreate
+    
+    if (!newBook) {
+      res.status(400).json({error: 'New book was invalid'})
+    }
 
-    const [newBookId] = await addBook(newBook)
+    // const [newBookId] = await addBook(newBook)
 
-    res.json({ id: newBookId, ...newBook })
+    // res.json({ id: newBookId, ...newBook })
+
+    const books = await addBook(newBook)
+
+    res.json(books)
     
   } catch (error) {
     console.log(error)

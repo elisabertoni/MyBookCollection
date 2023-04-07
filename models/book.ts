@@ -3,3 +3,8 @@ export interface Book {
   title: string
   author: string
 }
+
+export interface BookCreate {
+  title: string
+  author: string
+}
