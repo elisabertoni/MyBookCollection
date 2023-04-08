@@ -3,14 +3,14 @@ import { Book } from "../../models/book";
 
 interface BookState {
   loading: boolean
-  error: string | undefined
   data: Book[]
+  error: string | undefined
 }
 
 const initialState: BookState = {
   loading: false,
-  error: undefined,
-  data: []
+  data: [],
+  error: undefined
 }
 
 export default function reducer(state = initialState, action: BookAction): BookState {
@@ -18,38 +18,38 @@ export default function reducer(state = initialState, action: BookAction): BookS
     case SET_BOOK_PENDING:
       return {
         loading: true,
-        error: undefined,
-        data: []
+        data: [],
+        error: undefined
       }
     case SET_BOOK_SUCCESS:
       return {
         loading: false,
-        error: undefined,
-        data: action.payload
+        data: action.payload,
+        error: undefined
       }
     case SET_BOOK_ADD:
       return {
         loading: false,
-        error: undefined,
-        data: action.payload
+        data: action.payload,
+        error: undefined
       }
     case SET_BOOK_UPDATE:
     return {
       loading: false,
-      error: undefined,
-      data: action.payload
+      data: action.payload,
+      error: undefined
     }
     case SET_BOOK_DELETE:
       return {
         loading: false,
-        error: undefined,
-        data: []
+        data: [],
+        error: undefined
       }
     case SET_ERROR:
       return {
         loading: false,
-        error: action.payload,
-        data: []
+        data: [],
+        error: action.payload
       }
     default:
       return state

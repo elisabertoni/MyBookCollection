@@ -7,7 +7,7 @@ import { fetchBooks, addBook, updateBook, deleteBook } from '../actions/books'
 export default function Books() {
   const [newBook, setNewBook] = useState( {title: '', author: ''} as BookCreate) 
 
-  const { loading, error, data } = useAppSelector( state => state. booksState)
+  const { loading, data, error } = useAppSelector( state => state. booksState)
 
   const dispatch = useAppDispatch()
 
@@ -26,6 +26,10 @@ export default function Books() {
     console.log(setNewBook)
   }
 
+  function handleDelete(bookId: number) {
+    dispatch(deleteBook(bookId))
+  }
+
   return (
     <div>
       {error && <p>{error}</p>}
@@ -35,6 +39,7 @@ export default function Books() {
       <ul>
         {data.map(book => (
           <li key={book.id}>{book.title} by {book.author}
+          <button onClick={() => handleDelete(book.id)}>Delete</button>
           <p>
             <button>Update</button>
           </p>
