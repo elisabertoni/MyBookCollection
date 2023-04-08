@@ -35,6 +35,10 @@ export default function Books() {
       <ul>
         {data.map(book => (
           <li key={book.id}>{book.title} by {book.author}
+          <p>
+            <button>Update</button>
+          </p>
+          
           </li>
         ))}
       </ul>

@@ -89,6 +89,7 @@ export function updateBook(bookId:number, book: Book): ThunkAction {
     return updateBookApi(bookId, book)
     .then(books => {
       dispatch(setBookUpdate(books))
+      dispatch(fetchBooks())
     })
     .catch(err => {
       dispatch(setError(err.message))
@@ -101,6 +102,7 @@ export function deleteBook(bookId: number): ThunkAction {
     return deleteBookApi(bookId)
     .then(() => {
       dispatch(setBookDelete())
+      dispatch(fetchBooks())
     })
     .catch(err => {
       dispatch(setError(err.message))

@@ -1,9 +1,7 @@
 exports.seed = function (knex) {
-  // Deletes ALL existing entries
   return knex('books')
     .del()
     .then(function () {
-      // Inserts seed entries
       return knex('books').insert([
         { id: 1, title: 'The Catcher in the Rye', author: 'J.D.Salinger'},
         { id: 2, title: 'It Ends with Us', author: 'Colleen Hoover'},
