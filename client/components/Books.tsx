@@ -1,12 +1,16 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
-import { Book, BookCreate } from '../../models/book'
+import { Book, BookCreate, BookUpdate } from '../../models/book'
 import { fetchBooks, addBook, updateBook, deleteBook } from '../actions/books'
 
-export default function Books() {
-  const [newBook, setNewBook] = useState( {title: '', author: ''} as BookCreate) 
+interface Props {
+  book: Book
+}
 
+export default function Books({book}: Props) {
+  const [newBook, setNewBook] = useState( {title: '', author: ''} as BookCreate) 
+  const [updatedBook, setUpdatedBook] = useState({title: '', author: ''} as BookCreate)
   const { loading, data, error } = useAppSelector( state => state. booksState)
 
   const dispatch = useAppDispatch()
@@ -30,18 +34,50 @@ export default function Books() {
     dispatch(deleteBook(bookId))
   }
 
+  function handleUpdate(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (book.id){
+      dispatch(updateBook(book.id, updatedBook))
+    }
+    setUpdatedBook({ title: '', author: ''})
+  }
+
   return (
     <div>
       {error && <p>{error}</p>}
       {loading && <img src='/loading-spinner.gif' alt='loading-spinner' />}
       
-      
       <ul>
         {data.map(book => (
           <li key={book.id}>{book.title} by {book.author}
+          
           <button onClick={() => handleDelete(book.id)}>Delete</button>
+          
           <p>
-            <button>Update</button>
+          <form onSubmit={handleUpdate} aria-label='Update Book'>
+
+            <label htmlFor='updateBookTitle'>Book Title</label>
+            <input
+              type='text'
+              name='book title'
+              id={`${book.id}`}
+              placeholder='Title'
+              value={updatedBook.title}
+              onChange={(e) => setUpdatedBook({...newBook, title: e.target.value})}
+            />
+
+            <label htmlFor='updateBookAuthor'>Book Author</label>
+            <input
+              type='text'
+              name='book author'
+              id={`${book.id}`}
+              placeholder='Author'
+              value={updatedBook.author}
+              onChange={(e) => setUpdatedBook({...newBook, author: e.target.value})}
+            /> 
+
+            <button type='submit'>Update Book</button>
+            </form>
           </p>
           
           </li>

@@ -11,7 +11,7 @@ export async function addBookApi(newBook: BookCreate): Promise<Book[]> {
   return response.body
 }
 
-export async function updateBookApi(bookId:number, updatedBook: Book): Promise<Book[]> {
+export async function updateBookApi(bookId:number, updatedBook: Book): Promise<Book> {
   const response = await request.patch(`/api/v1/books/${bookId}`).send(updatedBook)
   return response.body
 }

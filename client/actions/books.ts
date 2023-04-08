@@ -13,7 +13,7 @@ export type BookAction =
   | { type: typeof SET_BOOK_PENDING; payload: null }
   | { type: typeof SET_BOOK_SUCCESS ; payload: Book[] }
   | { type: typeof SET_BOOK_ADD ; payload: Book[] }
-  | { type: typeof SET_BOOK_UPDATE ; payload: Book[] }
+  | { type: typeof SET_BOOK_UPDATE ; payload: Book }
   | { type: typeof SET_BOOK_DELETE ; payload: null }
   | { type: typeof SET_ERROR; payload: string }
 
@@ -39,7 +39,7 @@ export function setBookAdd(books: Book[]): BookAction {
   }
 }
 
-export function setBookUpdate(books: Book[]): BookAction {
+export function setBookUpdate(books: Book): BookAction {
   return {
     type: SET_BOOK_UPDATE,
     payload: books
@@ -87,8 +87,8 @@ export function addBook(newBook: BookCreate): ThunkAction {
 export function updateBook(bookId:number, book: Book): ThunkAction {
   return dispatch => {
     return updateBookApi(bookId, book)
-    .then(books => {
-      dispatch(setBookUpdate(books))
+    .then(book => {
+      dispatch(setBookUpdate(book))
       dispatch(fetchBooks())
     })
     .catch(err => {
