@@ -27,24 +27,24 @@ export default function reducer(state = initialState, action: BookAction): BookS
         data: action.payload,
         error: undefined
       }
-    case SET_BOOK_ADD:
-      return {
-        loading: false,
-        data: action.payload,
-        error: undefined
-      }
-    case SET_BOOK_UPDATE:
-    return {
-      loading: false,
-      data: action.payload,
-      error: undefined
-    }
-    case SET_BOOK_DELETE:
-      return {
-        loading: false,
-        data: [],
-        error: undefined
-      }
+    // case SET_BOOK_ADD:
+    //   return {
+    //     loading: false,
+    //     data: action.payload,
+    //     error: undefined
+    //   }
+    // case SET_BOOK_UPDATE:
+    // return {
+    //   loading: false,
+    //   data: action.payload,
+    //   error: undefined
+    // }
+    // case SET_BOOK_DELETE:
+    //   return {
+    //     loading: false,
+    //     data: [],
+    //     error: undefined
+    //   }
     case SET_ERROR:
       return {
         loading: false,
