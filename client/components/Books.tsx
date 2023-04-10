@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from 'react'
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
 import { Book, BookCreate, BookUpdate } from '../../models/book'
@@ -15,15 +15,14 @@ export default function Books() {
     dispatch(fetchBooks())
   }, [dispatch])
 
-  // function handleChange(event: ChangeEvent<HTMLInputElement>) {
-  //   setNewBook({ ...newBook, [event.target.name]: event.target.value })
-  // }
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewBook({ ...newBook, [event.target.name]: event.target.value })
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     dispatch(addBook(newBook))
     setNewBook({ title: '', author: ''})
-    console.log(setNewBook)
   }
 
   function handleDelete(bookId: number) {
@@ -51,21 +50,21 @@ export default function Books() {
         <label htmlFor='bookTitle'>Book Title</label>
         <input
           type='text'
-          name='book title'
+          name='title'
           id='bookId'
           placeholder='Title'
           value={newBook.title}
-          onChange={(e) => setNewBook({...newBook, title: e.target.value})}
+          onChange={handleChange}
         />
 
         <label htmlFor='bookAuthor'>Book Author</label>
         <input
           type='text'
-          name='book author'
+          name='author'
           id='bookId'
           placeholder='Author'
           value={newBook.author}
-          onChange={(e) => setNewBook({...newBook, author: e.target.value})}
+          onChange={handleChange}
         /> 
 
       <button type='submit'>ADD NEW BOOK</button>

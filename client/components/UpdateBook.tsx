@@ -10,8 +10,9 @@ interface BookProps {
 
 export default function UpdateBook({book}: BookProps) {
   
-  const [updatedBook, setUpdatedBook] = useState<BookUpdate>({title: '', author: ''})
-
+  const [updatedBook, setUpdatedBook] = useState<BookUpdate>({title: book.title, author: book.author})
+  const [showForm, setShowForm] = useState(false)
+  
   const dispatch = useAppDispatch()
   
   function handleUpdate(event: FormEvent<HTMLFormElement>) {
@@ -19,8 +20,13 @@ export default function UpdateBook({book}: BookProps) {
     if (book.id){
       dispatch(updateBook(book.id, updatedBook))
     }
-    setUpdatedBook({ title: '', author: ''})
+    setShowForm(false)
   }
+
+  if (!showForm)
+    return (
+      <button onClick={() => setShowForm(true)}>Update</button>
+    )
 
   return (
     <div>
