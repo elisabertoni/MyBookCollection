@@ -119,3 +119,38 @@ describe('PATCH /api/v1/books/:id', () => {
     expect(response.status).toBe(500)
   })
 })
+
+describe('DELETE /api/v1/books/:id', () => {
+  it('should delete a book', async () => {
+
+    const bookId = 3
+    
+    // Arrange
+    expect.assertions(1)
+
+    jest.mocked(db.deleteBook).mockResolvedValue([])
+
+    // Act
+    const response = await request(server).patch(`/api/v1/books/${bookId}`)
+
+    // Assert
+    expect(response.status).toBe(200)
+  })
+
+  it('should return status 500 and an error message when database fails', async () => {
+    
+    const bookId = 3
+    
+    // Arrange
+    expect.assertions(1)
+  
+    jest.spyOn(console, 'log').mockImplementation(() => {})
+    jest.mocked(db.deleteBook).mockRejectedValue(new Error('Mock error message'))
+  
+    // Act
+    const response = await request(server).delete(`/api/v1/books/${bookId}`)
+  
+    // Assert
+    expect(response.status).toBe(500)
+  })
+})
