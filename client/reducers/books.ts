@@ -1,4 +1,4 @@
-import { SET_BOOK_PENDING, SET_BOOK_SUCCESS, SET_BOOK_ADD, SET_BOOK_UPDATE, SET_BOOK_DELETE, SET_ERROR, BookAction } from "../actions/books";
+import { SET_BOOK_PENDING, SET_BOOK_SUCCESS, SET_ERROR, BookAction } from "../actions/books";
 import { Book } from "../../models/book";
 
 interface BookState {
@@ -27,24 +27,6 @@ export default function reducer(state = initialState, action: BookAction): BookS
         data: action.payload,
         error: undefined
       }
-    // case SET_BOOK_ADD:
-    //   return {
-    //     loading: false,
-    //     data: action.payload,
-    //     error: undefined
-    //   }
-    // case SET_BOOK_UPDATE:
-    // return {
-    //   loading: false,
-    //   data: action.payload,
-    //   error: undefined
-    // }
-    // case SET_BOOK_DELETE:
-    //   return {
-    //     loading: false,
-    //     data: [],
-    //     error: undefined
-    //   }
     case SET_ERROR:
       return {
         loading: false,

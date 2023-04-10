@@ -35,7 +35,7 @@ export default function UpdateBook({book}: BookProps) {
         <label htmlFor='updateBookTitle'>Book Title</label>
         <input
           type='text'
-          name='book title'
+          name='title'
           id={`${book.id}`}
           placeholder='Title'
           value={updatedBook.title}
@@ -45,7 +45,7 @@ export default function UpdateBook({book}: BookProps) {
         <label htmlFor='updateBookAuthor'>Book Author</label>
         <input
           type='text'
-          name='book author'
+          name='author'
           id={`${book.id}`}
           placeholder='Author'
           value={updatedBook.author}

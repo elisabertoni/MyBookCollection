@@ -13,8 +13,6 @@ export async function addBook(newBook: BookCreate, db = connection): Promise<Boo
 export async function updateBook(bookId:number, updatedBook: BookUpdate, db = connection): Promise<Book[]> {
   await db('books').update(updatedBook).where('id', bookId )
   return getAllBooks()
-    // .returning(['id', 'title', 'author'])
-    // .then((result) => result[0])
 }
 
 export async function deleteBook(bookId:number, db = connection): Promise<Book[]> {

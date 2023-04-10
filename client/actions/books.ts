@@ -12,9 +12,6 @@ export const SET_ERROR = 'SET_PENDING'
 export type BookAction = 
   | { type: typeof SET_BOOK_PENDING; payload: null }
   | { type: typeof SET_BOOK_SUCCESS ; payload: Book[] }
-  // | { type: typeof SET_BOOK_ADD ; payload: Book[] }
-  // | { type: typeof SET_BOOK_UPDATE ; payload: Book[]  } //payload
-  // | { type: typeof SET_BOOK_DELETE ; payload: null }
   | { type: typeof SET_ERROR; payload: string }
 
 
@@ -32,26 +29,6 @@ export function setBooksSuccess(books: Book[]): BookAction {
   }
 }
 
-// export function setBookAdd(books: Book[]): BookAction {
-//   return {
-//     type: SET_BOOK_ADD,
-//     payload: books
-//   }
-// }
-
-// export function setBookUpdate(books: Book[]): BookAction {
-//   return {
-//     type: SET_BOOK_UPDATE,
-//     payload: books
-//   }
-// }
-
-// export function setBookDelete(): BookAction {
-//   return {
-//     type: SET_BOOK_DELETE,
-//     payload: null
-//   }
-// }
 export function setError(errMessage: string): BookAction {
   return {
     type: SET_ERROR,
