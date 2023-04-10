@@ -8,6 +8,7 @@
     "build": "npm run webpack -- --mode production",
     "start": "ts-node server/index.ts",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --noStackTrace --watchAll",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",

@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`database tests getAllBooks works: [
+      { id: 1, title: 'The Catcher in the Rye', author: 'J.D.Salinger' },
+      { id: 2, title: 'It Ends with Us', author: 'Colleen Hoover' },
+      {
+        id: 3,
+        title: "Harry Potter and the Philosopher's Stone",
+        author: 'J.K.Rowling'
+      },
+      {
+        id: 4,
+        title: 'The Lion, the Witch, and the Wardrobe',
+        author: 'C.S. Lewis'
+      },
+      { id: 5, title: 'Normal People', author: 'Sally Rooney' },
+      { id: 6, title: 'The Duke and I', author: 'Julia Quinn' },
+      { id: 7, title: 'Girls That Invest', author: 'Simran Kaur' },
+      {
+        id: 8,
+        title: 'My Darling Lemon Thyme: Every Day',
+        author: 'Emma Galloway'
+      },
+      { id: 9, title: 'Search Inside Yourself', author: ' Chade-Meng Ta' },
+      {
+        id: 10,
+        title: 'Homegrown Kitchen: Everyday Recipes for Eating Well',
+        author: 'Nicola Galloway'
+      },
+      {
+        id: 11,
+        title: 'Healthy Baking: Nourishing breads, wholesome cakes, ancient grains and bubbling ferments',
+        author: 'Jordan Bourke'
+      }
+    ] 1`] = `
+[
+  {
+    "author": "J.D.Salinger",
+    "id": 1,
+    "title": "The Catcher in the Rye",
+  },
+  {
+    "author": "Colleen Hoover",
+    "id": 2,
+    "title": "It Ends with Us",
+  },
+  {
+    "author": "J.K.Rowling",
+    "id": 3,
+    "title": "Harry Potter and the Philosopher's Stone",
+  },
+  {
+    "author": "C.S. Lewis",
+    "id": 4,
+    "title": "The Lion, the Witch, and the Wardrobe",
+  },
+  {
+    "author": "Sally Rooney",
+    "id": 5,
+    "title": "Normal People",
+  },
+  {
+    "author": "Julia Quinn",
+    "id": 6,
+    "title": "The Duke and I",
+  },
+  {
+    "author": "Simran Kaur",
+    "id": 7,
+    "title": "Girls That Invest",
+  },
+  {
+    "author": "Emma Galloway",
+    "id": 8,
+    "title": "My Darling Lemon Thyme: Every Day",
+  },
+  {
+    "author": " Chade-Meng Ta",
+    "id": 9,
+    "title": "Search Inside Yourself",
+  },
+  {
+    "author": "Nicola Galloway",
+    "id": 10,
+    "title": "Homegrown Kitchen: Everyday Recipes for Eating Well",
+  },
+  {
+    "author": "Jordan Bourke",
+    "id": 11,
+    "title": "Healthy Baking: Nourishing breads, wholesome cakes, ancient grains and bubbling ferments",
+  },
+]
+`;
