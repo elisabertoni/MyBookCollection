@@ -85,3 +85,37 @@ describe('POST /api/v1/books', () => {
   })
 })
 
+describe('PATCH /api/v1/books/:id', () => {
+  it('should update a book', async () => {
+
+    const bookId = 3
+    
+    // Arrange
+    expect.assertions(1)
+
+    jest.mocked(db.updateBook).mockResolvedValue([])
+
+    // Act
+    const response = await request(server).patch(`/api/v1/books/${bookId}`)
+
+    // Assert
+    expect(response.status).toBe(200)
+  })
+
+  it('should return status 500 and an error message when database fails', async () => {
+    
+    const bookId = 3
+    
+    // Arrange
+    expect.assertions(1)
+  
+    jest.spyOn(console, 'log').mockImplementation(() => {})
+    jest.mocked(db.updateBook).mockRejectedValue(new Error('Mock error message'))
+  
+    // Act
+    const response = await request(server).patch(`/api/v1/books/${bookId}`)
+  
+    // Assert
+    expect(response.status).toBe(500)
+  })
+})
