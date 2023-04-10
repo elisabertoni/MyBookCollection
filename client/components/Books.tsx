@@ -34,20 +34,9 @@ export default function Books() {
       {error && <p>{error}</p>}
       {loading && <img src='/loading-spinner.gif' alt='loading-spinner' />}
       
-      <ul>
-        {data.map(book => (
-          <li key={book.id}>{book.title} by {book.author}
-          
-          <button onClick={() => handleDelete(book.id)}>Delete</button>
-          {<UpdateBook book={book} />}
-          
-          </li>
-        ))}
-      </ul>
-
       <form onSubmit={handleSubmit} aria-label='Add Book'>
 
-        <label htmlFor='bookTitle'>Book Title</label>
+        <label htmlFor='bookTitle'>Book Title:</label>
         <input
           type='text'
           name='title'
@@ -57,7 +46,7 @@ export default function Books() {
           onChange={handleChange}
         />
 
-        <label htmlFor='bookAuthor'>Book Author</label>
+        <label htmlFor='bookAuthor'>Book Author:</label>
         <input
           type='text'
           name='author'
@@ -69,6 +58,17 @@ export default function Books() {
 
       <button type='submit'>ADD NEW BOOK</button>
       </form>
+
+      <ul>
+        {data.map(book => (
+          <li key={book.id}>{book.title} by {book.author}
+          
+          <button onClick={() => handleDelete(book.id)}>Delete</button>
+          {<UpdateBook book={book} />}
+          
+          </li>
+        ))}
+      </ul>
 
     </div>
   )
