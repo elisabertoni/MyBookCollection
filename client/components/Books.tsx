@@ -1,13 +1,16 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
-import { BookCreate} from '../../models/book'
+import { BookCreate } from '../../models/book'
 import { fetchBooks, addBook, deleteBook } from '../actions/books'
 import UpdateBook from './UpdateBook'
 
 export default function Books() {
-  const [newBook, setNewBook] = useState( {title: '', author: ''} as BookCreate) 
-  const { loading, data, error } = useAppSelector( state => state. booksState)
+  const [newBook, setNewBook] = useState({
+    title: '',
+    author: '',
+  } as BookCreate)
+  const { loading, data, error } = useAppSelector((state) => state.booksState)
 
   const dispatch = useAppDispatch()
 
@@ -22,7 +25,7 @@ export default function Books() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     dispatch(addBook(newBook))
-    setNewBook({ title: '', author: ''})
+    setNewBook({ title: '', author: '' })
   }
 
   function handleDelete(bookId: number) {
@@ -32,44 +35,41 @@ export default function Books() {
   return (
     <div>
       {error && <p>{error}</p>}
-      {loading && <img src='/loading-spinner.gif' alt='loading-spinner' />}
-      
-      <form onSubmit={handleSubmit} aria-label='Add Book'>
+      {loading && <img src="/loading-spinner.gif" alt="loading-spinner" />}
 
-        <label htmlFor='bookTitle'>Book Title:</label>
+      <form onSubmit={handleSubmit} aria-label="Add Book">
+        <label htmlFor="bookTitle">Book Title:</label>
         <input
-          type='text'
-          name='title'
-          id='bookId'
-          placeholder='Title'
+          type="text"
+          name="title"
+          id="bookTitle"
+          placeholder="Title"
           value={newBook.title}
           onChange={handleChange}
         />
 
-        <label htmlFor='bookAuthor'>Book Author:</label>
+        <label htmlFor="bookAuthor">Book Author:</label>
         <input
-          type='text'
-          name='author'
-          id='bookId'
-          placeholder='Author'
+          type="text"
+          name="author"
+          id="bookAuthor"
+          placeholder="Author"
           value={newBook.author}
           onChange={handleChange}
-        /> 
+        />
 
-      <button type='submit'>ADD NEW BOOK</button>
+        <button type="submit">ADD NEW BOOK</button>
       </form>
 
       <ul>
-        {data.map(book => (
-          <li key={book.id}>{book.title} by {book.author}
-          
-          <button onClick={() => handleDelete(book.id)}>Delete</button>
-          {<UpdateBook book={book} />}
-          
+        {data.map((book) => (
+          <li key={book.id}>
+            {book.title} by {book.author}
+            <button onClick={() => handleDelete(book.id)}>Delete</button>
+            {<UpdateBook book={book} />}
           </li>
         ))}
       </ul>
-
     </div>
   )
-} 
+}
