@@ -74,4 +74,20 @@ describe('database tests', () => {
     expect(newBook.id).toBe(12)
     
   })
+  it('should update a book', async () => {
+     // Arrange
+     expect.assertions(3)
+
+     // Act
+     const bookId = 3
+     const updatedbook = {title: 'Harry Potter and the Chamber of Secrets', author: 'J.K. Rowling'}
+     await updateBook(bookId, updatedbook)
+     const books = await getAllBooks()
+ 
+     // Assert
+    expect(books).toHaveLength(11)
+    expect(updatedbook.title).toBe('Harry Potter and the Chamber of Secrets')
+    expect(updatedbook.author).toBe('J.K. Rowling')
+  })
+  
 })
