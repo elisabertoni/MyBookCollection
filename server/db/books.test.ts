@@ -16,9 +16,13 @@ afterAll(() => {
 describe('database tests', () => {
   it('getAllBooks works', async () => {
     // Arrange
+    expect.assertions(2)
+
     // Act
     const books = await getAllBooks()
+
     // Assert
+    expect(books).toHaveLength(11)
     expect(books).toMatchSnapshot(`[
       { id: 1, title: 'The Catcher in the Rye', author: 'J.D.Salinger' },
       { id: 2, title: 'It Ends with Us', author: 'Colleen Hoover' },
@@ -53,7 +57,21 @@ describe('database tests', () => {
       }
     ]`)
   })
-  it('add a new book', async () => {
+  it('should add a new book', async () => {
+
+    // Arrange
+    expect.assertions(4)
+
+    // Act
+    const newBook = { id: 12, title: 'Harry Potter', author: 'J.K. Rowling'}
+    await addBook(newBook)
+    const books = await getAllBooks()
+
+    // Assert
+    expect(books).toHaveLength(12)
+    expect(newBook.title).toBe('Harry Potter')
+    expect(newBook.author).toBe('J.K. Rowling')
+    expect(newBook.id).toBe(12)
     
   })
 })
