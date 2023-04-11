@@ -6,7 +6,6 @@ import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import App from './App'
 import { initialiseStore } from '../store'
-import { BookCreate } from '../../models/book'
 
 const store = initialiseStore()
 
@@ -213,7 +212,44 @@ describe('Test Book Component', () => {
     const bookId = 1
     const scope4 = nock('http://localhost')
     .delete(`/api/v1/books/${bookId}`)
-    .reply(200)
+    .reply(200, [
+      { id: 2, title: 'It Ends with Us', author: 'Colleen Hoover' },
+      {
+        id: 3,
+        title: "Harry Potter and the Philosopher's Stone",
+        author: 'J.K.Rowling',
+      },
+      {
+        id: 4,
+        title: 'The Lion, the Witch, and the Wardrobe',
+        author: 'C.S. Lewis',
+      },
+      { id: 5, title: 'Normal People', author: 'Sally Rooney' },
+      { id: 6, title: 'The Duke and I', author: 'Julia Quinn' },
+      { id: 7, title: 'Girls That Invest', author: 'Simran Kaur' },
+      {
+        id: 8,
+        title: 'My Darling Lemon Thyme: Every Day',
+        author: 'Emma Galloway',
+      },
+      { id: 9, title: 'Search Inside Yourself', author: ' Chade-Meng Ta' },
+      {
+        id: 10,
+        title: 'Homegrown Kitchen: Everyday Recipes for Eating Well',
+        author: 'Nicola Galloway',
+      },
+      {
+        id: 11,
+        title:
+          'Healthy Baking: Nourishing breads, wholesome cakes, ancient grains and bubbling ferments',
+        author: 'Jordan Bourke',
+      },
+      {
+        id: 12,
+        title: 'The Kite Runner',
+        author: 'Khaled Hosseini',
+      },
+    ])
 
     render(
       <Router initialEntries={['/']}>
@@ -225,48 +261,6 @@ describe('Test Book Component', () => {
 
     const booksList = await screen.findAllByRole('listitem')
     await waitFor(() => expect(scope3.isDone()).toBeTruthy())
-
-    const scope5 = nock('http://localhost')
-      .get('/api/v1/books')
-      .reply(200, [
-        { id: 2, title: 'It Ends with Us', author: 'Colleen Hoover' },
-        {
-          id: 3,
-          title: "Harry Potter and the Philosopher's Stone",
-          author: 'J.K.Rowling',
-        },
-        {
-          id: 4,
-          title: 'The Lion, the Witch, and the Wardrobe',
-          author: 'C.S. Lewis',
-        },
-        { id: 5, title: 'Normal People', author: 'Sally Rooney' },
-        { id: 6, title: 'The Duke and I', author: 'Julia Quinn' },
-        { id: 7, title: 'Girls That Invest', author: 'Simran Kaur' },
-        {
-          id: 8,
-          title: 'My Darling Lemon Thyme: Every Day',
-          author: 'Emma Galloway',
-        },
-        { id: 9, title: 'Search Inside Yourself', author: ' Chade-Meng Ta' },
-        {
-          id: 10,
-          title: 'Homegrown Kitchen: Everyday Recipes for Eating Well',
-          author: 'Nicola Galloway',
-        },
-        {
-          id: 11,
-          title:
-            'Healthy Baking: Nourishing breads, wholesome cakes, ancient grains and bubbling ferments',
-          author: 'Jordan Bourke',
-        },
-        {
-          id: 12,
-          title: 'The Kite Runner',
-          author: 'Khaled Hosseini',
-        },
-      ])
-
     const deleteButton = within(booksList[0]).getByRole('button', { name: 'Delete' })
 
     act(() => {
@@ -274,8 +268,7 @@ describe('Test Book Component', () => {
     })
 
     await waitFor(() => expect(scope4.isDone()).toBeTruthy())
-    await waitFor(() => expect(scope5.isDone()).toBeTruthy())
-
+  
     const newBooksList = await screen.findAllByRole('listitem')
     expect(newBooksList).toHaveLength(11)
   })
