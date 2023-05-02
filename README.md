@@ -1,19 +1,19 @@
 # My Book Collection 📚
 
-This repo is designed to provide space to code a fullstack app. It contains node modules and folders for databases, routes, api requests, react components, and redux actions and creators. Let's get going!
+My Book Collection is a website which allows a user to create their own book collections. Users can add, update and remove books.
 
 ## Setup
 
-### 0. Cloning and installation
-- [ ] Clone this repo, navigate to it, install packages with `npm i` , and start the server with `npm run dev`
-  <details style="padding-left: 2em">
+### Cloning and installation
+- [ ] Clone this repo, navigate to it, install packages, run migrations and seeds, and start the server
     <summary>Tip</summary>
 
     You may also want to start a new branch
     ```sh
-    cd my-fullstack-collection-scss
+    cd my-book-collection-scss
     npm i
-    git checkout -b <branchname>
+    npm run knex migrate:latest`
+    npm run knex seed:run`
     npm run dev
     ```
   </details>
