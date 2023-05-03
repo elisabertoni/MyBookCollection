@@ -1,6 +1,7 @@
 # MyLibrary 📚
 
 MyLibrary is a repo which allows a user to create their own book collections. Users can add, update and remove books.
+This is a full-stack project inclusing unit test covering over 80% of functions in the repo.
 
 ## Setup
 
